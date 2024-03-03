@@ -1,0 +1,44 @@
+<div class="container" style="padding-bottom: 10%; padding-top: 10%">
+  <div class="row text-center"><h1>Login</h1></div>
+  <form [formGroup]="profileForm" (ngSubmit)="submit()">
+    <div class="row g-3 py-3" style="padding-left: 30%; padding-right: 30%">
+      <div class="col">
+        <input
+          type="email"
+          class="form-control"
+          formControlName="email"
+          placeholder="email@email.com"
+          aria-label="Email"
+        />
+      </div>
+      @if (profileForm.get('email')?.invalid && profileForm.get('email')?.touched) {
+        @for (error of validationMessages.email; track $index) {
+            @if (profileForm.get('email')?.hasError(error.type)) {
+                <span class="text-danger">{{error.message}}</span>
+            }
+        }
+    }
+    </div>
+    <div class="row g-3" style="padding-left: 30%; padding-right: 30%">
+      <div class="col">
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Password"
+          formControlName="password"
+          aria-label="Password"
+        />
+      </div>
+      @if (profileForm.get('password')?.invalid && profileForm.get('password')?.touched) {
+        @for (error of validationMessages.password; track $index) {
+            @if (profileForm.get('password')?.hasError(error.type)) {
+                <span class="text-danger">{{error.message}}</span>
+            }
+        }
+    }
+    </div>
+    <div class="col pt-2" style="padding-left: 30%; padding-right: 30%">
+      <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+  </form>
+</div>
