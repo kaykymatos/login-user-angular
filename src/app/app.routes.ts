@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import {  loginGuardGuard } from './guard/login-guard.guard';
 
 export const routes: Routes = [
     {
@@ -15,6 +16,12 @@ export const routes: Routes = [
         path: 'cadastration',
         title: "Cadastration",
         loadComponent: () => import('./pages/cadastration/cadastration.component')
+    },
+    {
+        path: 'info',
+        title: "Info user",
+        canActivate:[loginGuardGuard],
+        loadComponent: () => import('./pages/info-user/info-user.component')
     },
     {
         path: '**',

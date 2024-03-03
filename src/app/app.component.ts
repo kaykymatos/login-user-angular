@@ -16,5 +16,5 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [CommonModule, RouterOutlet, FooterSiteComponent, NavBarSiteComponent,HttpClientModule]
 })
 export class AppComponent {
-  title = 'login-user';
+  title = 'Home';
 }
