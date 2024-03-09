@@ -10,7 +10,7 @@ export const routes: Routes = [
     {
         path: 'login',
         title: "Login",
-        loadComponent: () => import('./pages/login/login.component')
+        loadComponent: () => import('./pages/login/login.component'),
     },
     {
         path: 'cadastration',

@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { IUser } from '../interfaces/IUser';
 import { IUserLogin } from '../interfaces/IUserLogin';
+import { IToken } from '../interfaces/IToken';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class ApiServiceService {
     return this.http.post<IUser>(`${this.url}/user`, { user });
   }
   
-  public loginUser$(user: IUserLogin): Observable<IUser> {
-    return this.http.post<IUser>(`${this.url}/user/login`, { user });
+  public loginUser$(user: IUserLogin): Observable<IToken> {
+    return this.http.post<IToken>(`http://localhost:3000/api/v1/user/login`, { user });
   }
 }

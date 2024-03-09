@@ -5,6 +5,8 @@ import { IUser } from '../../interfaces/IUser';
 import { IUserLogin } from '../../interfaces/IUserLogin';
 import { ApiServiceService } from '../../services/api-service.service';
 import { concatMap } from 'rxjs';
+import { LocalstorageService } from '../../services/localstorage.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,6 +19,8 @@ import { concatMap } from 'rxjs';
 export default class LoginComponent {
   #fb = inject(FormBuilder);
   #apiService: ApiServiceService = inject(ApiServiceService);
+  #localStorageService: LocalstorageService = inject(LocalstorageService);
+  #router: Router = inject(Router);
 
 
   public validationMessages = {
@@ -51,6 +55,7 @@ export default class LoginComponent {
     ],
   });
   public submit() {
+    
     if (!this.profileForm.valid) {
       Object.keys(this.profileForm.controls).forEach((key) => {
 
@@ -64,7 +69,10 @@ export default class LoginComponent {
       this.#apiService.loginUser$(login).pipe(
         concatMap(() => this.#apiService.loginUser$(login)))
         .subscribe({
-          next: (next) => console.log(next),
+          next: (next) => {
+            this.#localStorageService.setItem("token",next.token); 
+            this.#router.navigate(['/']);
+          },
           error: (error) => console.log(error)
         });
     }

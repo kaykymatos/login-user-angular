@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { LocalstorageService } from '../../services/localstorage.service';
 
 @Component({
   selector: 'app-nav-bar-site',
@@ -11,7 +12,9 @@ import { AuthService } from '../../services/auth.service';
 })
 export class NavBarSiteComponent implements OnInit {
 
-  constructor(private router: Router, public authService: AuthService) { }
+  constructor(private router: Router,
+     public authService: AuthService, 
+     public localStorege: LocalstorageService) { }
 
   ngOnInit(): void {
   }
@@ -20,5 +23,9 @@ export class NavBarSiteComponent implements OnInit {
   }
   isActive(link: string): boolean {
     return this.router.url === link;
+  }
+  logOt(){
+    this.localStorege.clear();
+    this.router.navigate(['/'])
   }
 }
