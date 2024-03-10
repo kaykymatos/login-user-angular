@@ -16,16 +16,17 @@
       <li class="nav-item active">
         <a class="nav-link" [routerLink]="['']" >Home</a>
       </li>
+      @if (!isAuth()) {
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['cadastration']">Cadastration</a>
-      </li>
+      </li>}
       
       @if (isAuth()) {
         <li class="nav-item" >
           <a class="nav-link" [routerLink]="['info']">Info</a>
         </li>
         <li class="nav-item" >
-          <a class="nav-link" (click)="logOt()" >Logout</a>
+          <a class="nav-link" style="cursor: pointer;" (click)="logOt()" >Logout</a>
         </li>
       }@else{
         <li class="nav-item">
